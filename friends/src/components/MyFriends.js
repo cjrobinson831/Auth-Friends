@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import FormControl from '@material-ui/core/FormControl';
+
 
 import AddFriend from './AddFriend';
 import Friend from './Friend';
@@ -16,14 +18,15 @@ const MyFriends = () => {
 
     return (
         <>
-            <AddFriend />
-            <h1>My Friends!</h1>
-            {friends.map(friend => (
-                <div key={friend.id}>
-                    <Friend friend={friend} />
-
-                </div>
-            ))}
+            <FormControl>
+                <AddFriend />
+                <h1>My Friends!</h1>
+                {friends.map(friend => (
+                    <div key={friend.id}>
+                        <Friend friend={friend} />
+                    </div>
+                ))}
+            </FormControl>
         </>
     )
 }

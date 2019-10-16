@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button'
+
 
 const AddFriend = () => {
     const [friendData, setFriendData] = useState({ name: '', age: '', email: '' })
@@ -33,13 +36,14 @@ const AddFriend = () => {
     };
 
     return (
-        <form onSubmit={onSubmit}>
+        <FormControl onSubmit={onSubmit}>
             <input
                 type='text'
                 name='name'
                 value={friendData.name}
                 placeholder="Friends Name"
                 onChange={handleChange}
+                variant="outlined" color="primary"
             />
 
             <input
@@ -48,6 +52,7 @@ const AddFriend = () => {
                 value={friendData.age}
                 placeholder="Friend's Age"
                 onChange={handleChange}
+                variant="outlined" color="primary"
             />
 
             <input
@@ -56,9 +61,10 @@ const AddFriend = () => {
                 value={friendData.email}
                 placeholder="Friend's email"
                 onChange={handleChange}
+                variant="outlined" color="primary"
             />
-            <button type="submit">Add Friend</button>
-        </form>
+            <Button variant="outlined" color="primary" type="submit">Add Friend</Button>
+        </FormControl>
     );
 };
 

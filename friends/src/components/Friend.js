@@ -1,11 +1,16 @@
 import React from 'react';
+import FormControl from '@material-ui/core/FormControl';
+
 
 const Friend = ({ friend }) => {
-    reurn(
+    return (
         <div>
-            <h2>{friend.name}</h2>
-            <p>Age: {friend.age}</p>
-            <p>Email: {friend.email}</p>
+            <FormControl>
+                <h2>{friend.name}</h2>
+                <p>Age: {friend.age}</p>
+                <p>Email: {friend.email}</p>
+            </FormControl>
+
         </div>
     )
 }

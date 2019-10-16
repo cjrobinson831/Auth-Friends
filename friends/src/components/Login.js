@@ -1,37 +1,41 @@
-import React, { useState } from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import React, { useState } from "react";
+import axiosWithAuth from "../utils/axiosWithAuth.js";
+import Button from '@material-ui/core/Button'
+import FormControl from '@material-ui/core/FormControl';
+
 
 const Login = props => {
-    const [userCredentils, setuserCredentials] = useState({ username: '', password: '' })
+    const [userCredentials, setUserCredentials] = useState({ username: '', password: '' })
 
     const handleChange = e => {
-        setuserCredentials(
+        setUserCredentials(
             {
-                ...userCredentils,
+                ...userCredentials,
                 [e.target.name]: e.target.value
             }
         )
     }
-}
 
-const onSubmit = e => {
-    e.preventDefault()
-    axiosWithAuth()
-        .post('/login', userCredentils)
-        .then(res => {
-            localStorage.setItem('token', res.data.payload)
-        })
-        .catch(err => console.log(err))
-}
+    const onSubmit = e => {
+        e.preventDefault();
+        axiosWithAuth()
+            .post('/login', userCredentials)
+            .then(res => {
+                localStorage.setItem('token', res.data.payload)
+                props.history.push('/myfriends')
+            })
+            .catch(err => console.error(err))
+    }
 
-return (
-    <div>
-        <form onSubmit={onSubmit}>
-            <input type='text' name='username' value={userCredentils.username} onChange={handleChange} />
-            <input type='password' name='password' value={userCredentils} onChange={handleChange} />
-            <button> Log In </button>
-        </form>
-    </div>
-);
+    return (
+        <div>
+            <FormControl onSubmit={onSubmit}>
+                <input type="text" name="username" value={userCredentials.username} onChange={handleChange} />
+                <input type="password" name="password" value={userCredentials.password} onChange={handleChange} />
+                <Button color="inherit"> Log In </Button>
+            </FormControl>
+        </div>
+    );
+};
 
 export default Login;
