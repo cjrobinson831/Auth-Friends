@@ -6,8 +6,10 @@ const Login = props => {
 
     const handleChange = e => {
         setuserCredentials(
-            ...userCredentils,
-            [e.target.name]: e.target.value
+            {
+                ...userCredentils,
+                [e.target.name]: e.target.value
+            }
         )
     }
 }
